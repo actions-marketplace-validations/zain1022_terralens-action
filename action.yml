@@ -1,0 +1,30 @@
+name: 'TerraLens'
+description: 'Analyze Terraform plans on every PR — risk detection, cost estimates, and pre-apply checklist'
+author: 'TerraLens'
+branding:
+  icon: 'search'
+  color: 'purple'
+
+inputs:
+  api-key:
+    description: 'Your TerraLens API key (Pro users only). Get one at https://terralens.io/account. Leave blank for free-tier per-repo limits.'
+    required: false
+  plan-file:
+    description: 'Path to your terraform plan output file (e.g., the result of `terraform show -no-color tfplan > plan.txt`)'
+    required: true
+  github-token:
+    description: 'GitHub token for posting PR comments (defaults to GITHUB_TOKEN)'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  risk-level:
+    description: 'Highest risk severity found (critical/high/medium/low/none)'
+  cost-delta:
+    description: 'Estimated monthly cost change in USD'
+  safe-to-apply:
+    description: 'Boolean — true if no critical risks were detected'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
