@@ -1,4 +1,4 @@
-name: 'TerraLens'
+name: 'TerraLens Plan Analysis'
 description: 'Analyze Terraform plans on every PR — risk detection, cost estimates, and pre-apply checklist'
 author: 'TerraLens'
 branding:
